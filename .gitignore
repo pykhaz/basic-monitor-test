@@ -1,0 +1,21 @@
+# Vim/Neovim
+*.swp
+*.swo
+*~
+
+# Linux
+.directory
+
+# Archives
+arch/
+*.zip
+
+# shell scripts
+*.sh
+
+# html
+*_dev.html
+pages/dev.html
+
+# js
+*_dev.js

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simple monitor tester</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="icon" href="favicon.ico">
+        <style>
+            * {padding: 0.5rem; }
+            body {background-color: #000000; color: white; height: 100vh;
+                  font-family: Sans; }
+            scrollbar {display: none;}
+            ::-webkit-scrollbar {
+                display: none;
+            }
+            li {font-size: 2rem; }
+            .item {font-size: 2rem; margin-left: 8rem; }
+            #main-title {margin-left: 4rem; font-size: 3rem; }
+            #color-list {margin-left: 8rem; }
+
+            /*.black {color: black; text-shadow: 2px 2px white; }*/
+            .black {color: black; text-shadow: 2px 2px white; }
+            .white {color: white; }
+            .red {color: red; }
+            .green {color: green; }
+            .blue {color: blue; }
+        </style>
+        <meta name="darkreader-lock" content="">
+        <meta name="color-scheme" content="dark">
+    </head>
+
+    <body>
+
+        <h1 id="main-title">Colors: full pages</h1>
+
+        <p class="item">(mouse wheel to change, 'i' to toggle info box,
+                         f/F11 to toggle full screen)</p>
+
+        <ul id="color-list">
+            <li><a class="black" href="pages/black.html">Black</a></li>
+            <li><a class="white" href="pages/white.html">White</a></li>
+            <li><a class="red" href="pages/red.html">Red</a></li>
+            <li><a class="green" href="pages/green.html">Green</a></li>
+            <li><a class="blue" href="pages/blue.html">Blue</a></li>
+        </ul>
+
+        <a class="item grid-text" href="pages/grid_black.html">Grid</a>
+
+    </body>
+</html>

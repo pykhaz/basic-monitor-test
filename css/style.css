@@ -1,0 +1,52 @@
+/* style.css -- basic style-sheet template
+ * Monitor test
+ * khaz
+ * 2026-08-29 13:01:13.624331
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+
+#info {
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px 12px;
+  font-size: 18px;
+  border-radius: 4px;
+  margin: 3rem;
+  pointer-events: none; /* Żeby kursor nie reagował na napis */
+}
+
+span#hex-val {background: rgba(255, 255, 255, 0.2); }
+
+.grid-text {
+      font-size: 80px;
+      font-weight: 900;
+      text-transform: uppercase;
+
+      /* 1. Ustawiamy przeźroczysty kolor tekstu */
+      color: transparent;
+
+      /* 2. Rysujemy białe tło z czarną siatką */
+      background-color: #ffffff; /* Białe tło liter */
+      background-image: 
+        linear-gradient(to right, #000000 2px, transparent 2px),
+        linear-gradient(to bottom, #000000 2px, transparent 2px);
+
+      /* 3. Rozmiar kratki na tekście */
+      background-size: 9px 9px;
+
+      /* 4. Obcinamy tło do kształtu samych liter */
+      -webkit-background-clip: text;
+      background-clip: text;
+    }

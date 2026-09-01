@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Monitor test -- grid</title>
+        <style>
+            :root {
+            /* Domyślny rozmiar pojedynczej komórki (szerokość x wysokość) */
+            --grid-width: 160px;
+            --grid-height: 160px;
+            }
+
+            body {
+            margin: 0;
+            min-height: 100vh;
+            background-color: #000000; /* Kolor tła */
+
+            /* Rysowanie pionowych i poziomych linii siatki */
+            background-image: 
+            linear-gradient(to right, rgba(255, 255, 255, 1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 1) 2px, transparent 1px);
+
+            /* Rozmiar pojedynczej komórki siatki (Szerokość x Wysokość) */
+            background-size: var(--grid-width) var(--grid-height);
+            }
+            scrollbar {display: none;}
+            ::-webkit-scrollbar {
+            display: none;
+            }
+        </style>
+        <meta name="darkreader-lock" content="">
+        <meta name="color-scheme" content="dark">
+        <link rel="icon" href="../favicon.ico">
+    </head>
+
+    <body>
+
+    <script>
+        // Domyślny rozmiar i granice skalowania (w pikselach)
+        let gridWidth = 160;
+        let gridHeight = 160;
+
+        const MIN_SIZE = 40;   // Minimalna wielkość komórki
+        const MAX_SIZE = 800;  // Maksymalna wielkość komórki
+        const STEP = 40;        // Szybkość zmiany rozmiaru przy skoku kółka
+
+        // Proporcja szerokości do wysokości (1 = kwadrat, 1.5 = prostokąt)
+        const ASPECT_RATIO = 1.0; 
+
+        window.addEventListener('wheel', (event) => {
+        // Zapobiegamy domyślnemu przewijaniu strony
+        event.preventDefault();
+
+        // event.deltaY < 0 oznacza kręcenie kółkiem do góry (powiększanie)
+        if (event.deltaY < 0) {
+        gridWidth = Math.min(MAX_SIZE, gridWidth + STEP);
+        } else {
+        gridWidth = Math.max(MIN_SIZE, gridWidth - STEP);
+        }
+
+        gridHeight = gridWidth * ASPECT_RATIO;
+
+        // Aktualizacja zmiennych CSS
+        document.documentElement.style.setProperty('--grid-width', `${gridWidth}px`);
+        document.documentElement.style.setProperty('--grid-height', `${gridHeight}px`);
+        }, { passive: false }); // { passive: false } jest wymagane,
+        //                       by działało preventDefault()
+    </script>
+    <script src="../js/full_screen.js"></script>
+
+    </body>
+</html>

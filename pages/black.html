@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <title>Monitor test -- black</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <style>
+            body {
+              margin: 0;
+              height: 100vh;
+              /* Ustaw 0% dla testu czerni lub 100% dla testu bieli */
+              background-color: hsl(0, 0%, 0%);
+              display: flex;
+              justify-content: flex-end;
+              align-items: flex-end;
+              font-family: monospace;
+              user-select: none;
+            }
+        </style>
+        <meta name="darkreader-lock" content="">
+        <link rel="icon" href="../favicon.ico">
+    </head>
+    <body style="border: solid 5rem #000000; ">
+
+        <div id="info" style="border: solid gray 2px;">
+        Lightness: <span id="l-val"
+          style="background-color: rgba(255, 255, 255, 0.2);">0.0</span>% | Hex: <span id="hex-val">#000000</span>
+        </div>
+
+        <script src="../js/info.js"></script>
+        <script src="../js/info_vis.js"></script>
+        <script src="../js/full_screen.js"></script>
+
+    </body>
+</html>
