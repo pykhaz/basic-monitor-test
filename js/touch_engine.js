@@ -1,14 +1,9 @@
 /**
  *       title: touch_engine.js
  *      author: khaz
- *        desc: Maintenance of touch gestures
+ *        desc: Maintenance of touch gestures for basic_monitor_test
  *  created on: 2026-09-04 19:53:42.880928
  */
-
-document.addEventListener('DOMContentLoaded', () => {
-  console.log(` ━━━ js/touch_engine.js (Browser) ━━━\n`);
-  dbglog("DOM ready, script running.");
-});
 
 const touchXes = new Queue();
 const touchYes = new Queue();
@@ -18,18 +13,15 @@ let touchStartY = 0;
 let touchEndX = 0;
 let touchEndY = 0;
 
-dbglog("infoEl =", JSON.stringify(infoEl));
-dbglog("lValEl =", lValEl);
+const minSwipeDistance = 50; // Min. pixel distance to treat the movement
+                             //  as swipe
 
-const minSwipeDistance = 50; // Minimalna odległość w pikselach,
-                             //  by uznać ruch za swipe
-
-const targetArea = document.body; // lub konkretny element, np.
-                                          //  document.getElementById('canvas')
+const targetArea = document.body; // or certain element, e.g.
+                                  //  document.getElementById('canvas')
 
 targetArea.addEventListener('touchend', (e) => {
-        e.preventDefault(); // Blokuje scrollowanie strony
-                            //  podczas przeciągania
+        e.preventDefault(); // Blocks page scrolling
+                            // during swipe
 
         touchXes.clear();
         touchYes.clear();
@@ -38,8 +30,8 @@ targetArea.addEventListener('touchend', (e) => {
 
 
 targetArea.addEventListener('touchmove', (e) => {
-    e.preventDefault(); // Blokuje scrollowanie strony
-                        //  podczas przeciągania
+    e.preventDefault(); // Blocks page scrolling
+                            // during swipe
 
     touchXes.enqueue(e.touches[0].clientX);
     touchYes.enqueue(e.touches[0].clientY);
@@ -59,57 +51,25 @@ function handleGesture(source = "...") {
     const deltaX = touchEndX - touchStartX;
     const deltaY = touchEndY - touchStartY;
     let [r, g, b] = getInitialRGB();
-    dbglog(`r = ${r}, g = ${g}, b = ${b} (0)`);
 
-    // Sprawdź, czy ruch był głównie poziomy czy pionowy
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        // Ruch poziomy
-        if (Math.abs(deltaX) > minSwipeDistance) {
-        if (deltaX > 0) {
-            console.log('Swipe right by ', deltaX, ", rgb = ", [r, g, b],
-                        " [handleGesture from " +
-                        `${source}]`);
-        } else {
-            console.log('Swipe left by ', deltaX, ", rgb = ", [r, g, b],
-                        " [handleGesture from " +
-                        `${source}]`);
-            }
-        }
-        } else {  // ->
-        // Ruch pionowy
-        if (Math.abs(deltaY) > minSwipeDistance) {
-            if (deltaY > 0) {
-                console.log('Swipe down by ', -deltaY, ", rgb = ", [r, g, b],
-                            " [handleGesture from " +
-                            `${source}]`);
-            } else {
-            console.log('Swipe up by ', -deltaY, ", rgb = ", [r, g, b],
-                        " [handleGesture from " +
-                        `${source}]`);
-            }
-        }
-    }  // <-
+    const step = deltaY < 0 ? 1 : -1; // Change to e.g. 5 for quicker scroll
 
-    const step = deltaY < 0 ? 1 : -1; // Zmień na np. 5 dla szybszego skoku
-
-    dbglog(`r = ${r}, g = ${g}, b = ${b} (1)`);
     [r, g, b] = calcRGB(r, g, b, step);
 
     let lightness = 0;
     const hex = rgbToHex(r, g, b);
     const STEP = 0.5;
-    console.log("hex =", hex, " (0)")
 
     if (deltaY < 0) {
-      // Kręcenie w górę: rozjaśnianie (0% -> 100%)
+      // Turning up: brightening (0% -> 100%)
       lightness = Math.min(100, lightness + STEP);
     } else {
-      // Kręcenie w dół: ściemnianie (100% -> 0%)
+      // Turning down: darkening (100% -> 0%)
       lightness = Math.max(0, lightness - STEP);
     }
     const hexDec = parseInt(hex.replace('#', ''), 16);
 
-    // Aktualizacja tła i napisu
+    // Updating the background and text
     document.body.style.backgroundColor = hex;
     infoEl.textContent = hex;
     try {

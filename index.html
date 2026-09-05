@@ -19,6 +19,18 @@
             #main-title {margin-left: 4rem; font-size: 3rem; }
             #color-list {margin-left: 8rem; }
 
+            .mono-small {
+                font-family: monospace; font-size: 0.6rem;
+                alignment-baseline: middle;
+            }
+
+            #desc {
+                margin: 0.5em;
+                padding: 0.5em;
+                border: solid 1px orange;
+                border-radius: 0.5em;
+            }
+
             /*.black {color: black; text-shadow: 2px 2px white; }*/
             .black {color: black; text-shadow: 2px 2px white; }
             .white {color: white; }
@@ -32,9 +44,16 @@
 
     <body>
 
-        <h1 id="main-title">Colors: full pages</h1>
+        <h1>basic monitor test <span class="mono-small">v. 1.2; branch: touch</span></h1>
+        <h2>Web application for basic monitor test.</h2>
+        <p id="desc">The web site consists of several pages for testing colors
+         (black, white, red, green, blue) and page with grid,
+         for testing geometry. Each page allows for color adjustment
+         (via mouse wheel or touch gestures), or change of the grid dimensions.
+        </p>
 
-        <p class="item">(mouse wheel/touch to change, 'i' to toggle info box,
+        <p>(mouse wheel/touch-swipe to change,
+                        'i' to toggle info box,
                          f/F11 to toggle full screen)</p>
 
         <ul id="color-list">

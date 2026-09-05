@@ -14,8 +14,8 @@ const GRY    = "\x1b[38;5;245m"  // "\x1b[38;5;236m"
 const ORG    = "\x1b[38;5;202m"  // "\x1b[38;5;221m"
 const GRYB  = "\x1b[100m"
 
-const NOANSI = true;
-// const NOANSI = false;
+const NOANSI = true;  // for browser console
+// const NOANSI = false;  // for terminal
 
 
 function log(msg) {
@@ -41,8 +41,3 @@ function dbglog(...args) {
 
   console.log(`${dbgOpening} DBG: ${rst} ${formattedArgs} ${loc}`);
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  console.log(` ━━━ js/debug.js (Browser) ━━━\n`);
-  dbglog("DOM ready, script running.");
-});

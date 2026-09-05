@@ -1,13 +1,12 @@
 /**
-* -------
-* File:    js/full_screen.js
-* Author:  khaz
-* Date:    2026-08-31 13:16:20.666606
--------
-*/
+ *       title: js/full_screen.js
+ *      author: khaz
+ *        desc: debug module for basic_test_monitor
+ *  created on: 2026-08-31 13:16:20.666606
+ */
 
 document.addEventListener('keydown', (event) => {
-  // 1. Ignoruj, jeśli użytkownik pisze w polu tekstowym lub textarea
+  // 1. Ignore if user is typing in a text field or textarea
   const activeElement = document.activeElement;
   const isInput = activeElement.tagName === 'INPUT' || 
                   activeElement.tagName === 'TEXTAREA' || 
@@ -15,20 +14,20 @@ document.addEventListener('keydown', (event) => {
 
   if (isInput) return;
 
-  // 2. Reaguj na klawisz 'f' lub 'F'
+  // 2. Reacting to key 'f'/'F'
   if (event.key === 'f' || event.key === 'F') {
-    // Zapobiegaj domyślnemu zachowaniu (np. wyszukiwaniu na stronie w
-    //  niektórych przeglądarkach)
+    // Prevent default action (e.g. page search
+    //  in some browsers)
     event.preventDefault();
 
-    // 3. Przełączaj tryb pełnoekranowy (Toggle)
+    // 3. Toggle full screen mode
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch((err) => {
-        console.error(`Błąd włączania trybu pełnoekranowego: ${err.message}`);
+        console.error(`Error while switching on full screen mode: ${err.message}`);
       });
     } else {
       document.exitFullscreen().catch((err) => {
-        console.error(`Błąd wyłączania trybu pełnoekranowego: ${err.message}`);
+        console.error(`Error while switching off full screen mode: ${err.message}`);
       });
     }
   }

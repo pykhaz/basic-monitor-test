@@ -12,7 +12,7 @@ class Queue {
     this.items = [];
   }
 
-  // Dodaj na koniec
+  // Append to the end
   enqueue(element) {
     this.items.push(element);
   }
@@ -21,12 +21,12 @@ class Queue {
       this.items = [];
   }
 
-  // Pobierz z początku (zwraca undefined, gdy pusta)
+  // Get from the beginning (returns undefined if empty)
   dequeue() {
     return this.items.shift();
   }
 
-  // Podgląd elementu nr index
+  // Peek at element nr index
   peek(index = 0) {
     if (index < 0) {
         index = this.items.length + index
@@ -42,9 +42,3 @@ class Queue {
     return `Queue([${this.items.join(', ')}])`;
   }
 }
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  console.log(` ━━━ css/queue.js (Browser) ━━━\n`);
-  console.log("DOM ready, script running.");
-});

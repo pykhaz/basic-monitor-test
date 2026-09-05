@@ -1,4 +1,4 @@
-/* style.css -- basic style-sheet template
+/* style.css -- style-sheet for basic_monitor_test
  * Monitor test
  * khaz
  * 2026-08-29 13:01:13.624331
@@ -24,7 +24,7 @@ html {
   font-size: 18px;
   border-radius: 4px;
   margin: 3rem;
-  pointer-events: none; /* Żeby kursor nie reagował na napis */
+  pointer-events: none; /* To prevent cursor reaction for text */
 }
 
 span#hex-val {background: rgba(255, 255, 255, 0.2); }
@@ -34,19 +34,19 @@ span#hex-val {background: rgba(255, 255, 255, 0.2); }
       font-weight: 900;
       text-transform: uppercase;
 
-      /* 1. Ustawiamy przeźroczysty kolor tekstu */
+      /* 1. Setting text color transparent */
       color: transparent;
 
-      /* 2. Rysujemy białe tło z czarną siatką */
-      background-color: #ffffff; /* Białe tło liter */
+      /* 2. Drawing white background with black grid */
+      background-color: #ffffff; /* White background for characters */
       background-image: 
         linear-gradient(to right, #000000 2px, transparent 2px),
         linear-gradient(to bottom, #000000 2px, transparent 2px);
 
-      /* 3. Rozmiar kratki na tekście */
+      /* 3. Text grid size */
       background-size: 9px 9px;
 
-      /* 4. Obcinamy tło do kształtu samych liter */
+      /* 4. Croppint background only to the shape of characters */
       -webkit-background-clip: text;
       background-clip: text;
     }
