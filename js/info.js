@@ -4,8 +4,16 @@
 * Date:    2026-08-30 17:03:35.469845
 */
 
-  const infoEl = document.getElementById('hex-val');
-  const lValEl = document.getElementById('l-val');
+const infoEl = document.getElementById('hex-val');
+const lValEl = document.getElementById('l-val');
+const queue = new Queue();
+console.log("queue =", queue);
+
+// Funkcja pomocnicza do nakładania ograniczeń 0 - 255
+// const clamp = val => Math.min(255, Math.max(0, val));
+function clamp (val) {
+        return Math.min(255, Math.max(0, val));
+}
 
   // Pobieramy początkowy kolor z CSS i parsujemy do tabeli [r, g, b]
   function getInitialRGB() {
@@ -28,9 +36,6 @@
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
   }
 
-  // Funkcja pomocnicza do nakładania ograniczeń 0 - 255
-  const clamp = val => Math.min(255, Math.max(0, val));
-
   window.addEventListener('wheel', (e) => {
     e.preventDefault();
 
@@ -39,28 +44,11 @@
 
     // BADANIE PRZYPADKÓW SYSTEMU KOLORÓW:
 
-    // 1. Strona czarna (#000000): zmieniaj równomiernie wszystkie 3 kanały
-    //   w stronę szarości
-    if (r === g && g === b && r === 0 && step > 0) {
-      r = g = b = 1;
-    } else if (r === g && g === b) {
-      // Dla skali szarości / bieli / czerni - zmieniaj wszystkie kanały naraz
-      r = clamp(r + step);
-      g = clamp(g + step);
-      b = clamp(b + step);
-    } 
-    // 2. Kolory jednokanałowe (np. czysty zielony #00FF00, czerwony #FF0000,
-    //     niebieski #0000FF)
-    else {
-      // Zmieniaj tylko te kanały, które są aktywne (większe od 0)
-      if (r > 0) r = clamp(r + step);
-      if (g > 0) g = clamp(g + step);
-      if (b > 0) b = clamp(b + step);
-    }
+    [r, g, b] = calcRGB(r, g, b, step);
 
     let lightness = 0;
     const hex = rgbToHex(r, g, b);
-    const STEP = 0.5; 
+    const STEP = 0.5;
 
     if (e.deltaY < 0) {
       // Kręcenie w górę: rozjaśnianie (0% -> 100%)
@@ -81,3 +69,24 @@
     }
 
   }, { passive: false });
+
+function calcRGB(r, g, b, step) {
+    if (r === g && g === b && r === 0 && step > 0) {
+      r = g = b = 1;
+    } else if (r === g && g === b) {
+      // Dla skali szarości / bieli / czerni - zmieniaj wszystkie kanały naraz
+      r = clamp(r + step);
+      g = clamp(g + step);
+      b = clamp(b + step);
+    } 
+    // 2. Kolory jednokanałowe (np. czysty zielony #00FF00, czerwony #FF0000,
+    //     niebieski #0000FF)
+    else {
+      // Zmieniaj tylko te kanały, które są aktywne (większe od 0)
+      if (r > 0) r = clamp(r + step);
+      if (g > 0) g = clamp(g + step);
+      if (b > 0) b = clamp(b + step);
+    }
+
+    return [r, g, b];
+}

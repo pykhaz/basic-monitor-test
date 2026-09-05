@@ -28,7 +28,7 @@ geometry.
 
 | Action | Control | Description |
 | :--- | :--- | :--- |
-| **Adjust Intensity / Size** | `Mouse Wheel` | Modifies color brightness or grid cell scale |
+| **Adjust Intensity / Size** | `Mouse Wheel`/`Touch gesture` | Modifies color brightness or grid cell scale |
 | **Info Overlay** | `Key I` | Toggles the HEX / HSL readout overlay |
 | **Full screen** | `Key F`/`F11` | Toggles full screen |
 

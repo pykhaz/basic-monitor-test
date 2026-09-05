@@ -27,9 +27,20 @@
           style="background-color: rgba(255, 255, 255, 0.2);">0.0</span>% | Hex: <span id="hex-val">#000000</span>
         </div>
 
+        <script src="../js/debug.js"></script>
+        <script src="../js/queue.js"></script>
         <script src="../js/info.js"></script>
         <script src="../js/info_vis.js"></script>
+        <script src="../js/touch_engine.js"></script>
         <script src="../js/full_screen.js"></script>
+        <script>
+            const loc = {loc: "black.html"}
+            q = new Queue();
+            console.log("q =", q);
+            dbglog("q =", q, loc);
+            q.enqueue(3.5);
+            dbglog("q =", q, loc);
+        </script>
 
     </body>
 </html>

@@ -36,6 +36,7 @@
 
     <body>
 
+    <script src="../js/queue.js"></script>
     <script>
         // Domyślny rozmiar i granice skalowania (w pikselach)
         let gridWidth = 160;
@@ -45,27 +46,87 @@
         const MAX_SIZE = 800;  // Maksymalna wielkość komórki
         const STEP = 40;        // Szybkość zmiany rozmiaru przy skoku kółka
 
+        const touchXes = new Queue();
+        const touchYes = new Queue();
+
         // Proporcja szerokości do wysokości (1 = kwadrat, 1.5 = prostokąt)
-        const ASPECT_RATIO = 1.0; 
+        const ASPECT_RATIO = 1.0;
 
-        window.addEventListener('wheel', (event) => {
-        // Zapobiegamy domyślnemu przewijaniu strony
-        event.preventDefault();
+       window.addEventListener('wheel', (event) => {
+            // Zapobiegamy domyślnemu przewijaniu strony
+            event.preventDefault();
 
-        // event.deltaY < 0 oznacza kręcenie kółkiem do góry (powiększanie)
-        if (event.deltaY < 0) {
-        gridWidth = Math.min(MAX_SIZE, gridWidth + STEP);
-        } else {
-        gridWidth = Math.max(MIN_SIZE, gridWidth - STEP);
-        }
+            // event.deltaY < 0 oznacza kręcenie kółkiem do góry (powiększanie)
+            if (event.deltaY < 0) {
+            gridWidth = Math.min(MAX_SIZE, gridWidth + STEP);
+            } else {
+            gridWidth = Math.max(MIN_SIZE, gridWidth - STEP);
+            }
 
-        gridHeight = gridWidth * ASPECT_RATIO;
-
-        // Aktualizacja zmiennych CSS
-        document.documentElement.style.setProperty('--grid-width', `${gridWidth}px`);
-        document.documentElement.style.setProperty('--grid-height', `${gridHeight}px`);
+            handleEvent(gridWidth);
         }, { passive: false }); // { passive: false } jest wymagane,
         //                       by działało preventDefault()
+
+
+       window.addEventListener('touchend', (e) => {
+                e.preventDefault(); // Blokuje scrollowanie strony
+                                    //  podczas przeciągania
+
+                touchXes.clear();
+                touchYes.clear();
+                // handleGesture("touchend");
+            }, { passive: false });
+
+
+       document.body.addEventListener('touchmove', (event) => {
+            event.preventDefault(); // Blokuje scrollowanie strony
+                                    //  podczas przeciągania
+            // touchValuesEl.textContent = `x = ${e.touches[0].clientX}, ` +
+            //                             `y = ${e.touches[0].clientY}`
+            touchXes.enqueue(event.touches[0].clientX);
+            touchYes.enqueue(event.touches[0].clientY);
+            const deltaX = touchXes.peek(-1) - touchXes.peek();
+            const deltaY = touchYes.peek(-1) - touchYes.peek();
+
+            // touchStartX = touchXes.peek(0);
+            // touchEndX = touchXes.peek(-1);
+            // touchStartY = touchYes.peek(0);
+            // touchEndY = touchYes.peek(-1);
+            const coef = 3;
+            // if (deltaY < 0) {
+            //
+            //     console.log("deltaY < 0: gridWidth =", gridWidth, " (0)");
+            // // gridWidth = Math.min(MAX_SIZE, gridWidth + (STEP / (coef*50)).toFixed());
+            //     console.log("gridWidth + STEP =", gridWidth, " +", (STEP / coef).toFixed(),
+            //                 " =", gridWidth + (STEP / coef).toFixed())
+            // gridWidth = Math.min(MAX_SIZE, gridWidth + (STEP / coef).toFixed());
+            //     console.log("deltaY < 0: gridWidth =", gridWidth, " (1)");
+            // } else {
+            //     console.log("deltaY >= 0: gridWidth =", gridWidth, " (0)");
+            // gridWidth = Math.max(MIN_SIZE, gridWidth - (STEP / coef).toFixed());
+            //     console.log("deltaY >= 0: gridWidth =", gridWidth, " (1)");
+            // }
+
+            if (deltaY < 0) {
+            gridWidth = Math.min(MAX_SIZE, gridWidth + STEP);
+            } else {
+            gridWidth = Math.max(MIN_SIZE, gridWidth - STEP);
+            }
+            // print("touchXes = ", touchXes);
+            // print("touchYes = ", touchYes);
+            handleEvent(gridWidth);
+            }, { passive: false });
+
+        function handleEvent(width) {
+            height = width * ASPECT_RATIO;
+            console.log("width =", width, ", height =", height);
+
+            // Aktualizacja zmiennych CSS
+            document.documentElement.style.setProperty('--grid-width',
+                                                       `${width}px`);
+            document.documentElement.style.setProperty('--grid-height',
+                                                       `${height}px`);
+        }
     </script>
     <script src="../js/full_screen.js"></script>
 

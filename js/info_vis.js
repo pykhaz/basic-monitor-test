@@ -7,14 +7,11 @@
     var vis = true;
     const info = document.getElementById("info");
     const infoVisible = new Map();
-    // infoVisible.set(false, "hidden");
-    // infoVisible.set(true, "visible");
 
     window.addEventListener("keydown", function (event) {
         if (event.key == "i" || event.key === "I") {
             vis = !vis;
-            //
-            // info.style.visibility = infoVisible.get(vis);
+
             info.style.visibility = vis ? "visible" : "hidden";
         }
     });
