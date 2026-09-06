@@ -39,18 +39,21 @@
           }
 
           ul.color-list li::before {
-            content: "🖵\FE0E"; /* \FE0E przełącza emoji w tryb monochrome/text */
-            color: var(--screen-color);
-            text-shadow:
-              0 0 4px var(--screen-color),
-              0 0 12px var(--screen-color),
-              0 0 20px var(--screen-color); /* Skalowanie promienia tworzy głęboką poświatę */
-            margin-right: 0.6rem;
-            display: inline-block;
-            font-weight: 800;
-            font-size: 2rem;
-            alignment-baseline: middle;
-          }
+              content: "";
+              display: inline-block;
+              width: 1.5rem;  /* Rozmiar ikony */
+              height: 1.5rem;
+              margin-right: 0.75rem;
+
+              /* Podpięcie animowanego SVG */
+              background-image: url('assets/monitor-icon.svg');
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+
+              /* Opcjonalnie: dodanie poświaty/glow do całej ikony */
+              filter: drop-shadow(0 0 4px rgba(255, 255, 0, 0.6));
+            }
 
             .mono-small {
                 font-family: monospace; font-size: 0.6rem;
