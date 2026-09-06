@@ -30,8 +30,7 @@ html {
 span#hex-val {background: rgba(255, 255, 255, 0.2); }
 
 .grid-text {
-      font-size: 80px;
-      font-weight: 900;
+      font-weight: 800;
       text-transform: uppercase;
 
       /* 1. Setting text color transparent */

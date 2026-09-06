@@ -12,6 +12,8 @@
                     --amber-deeper: #ff9e00;
                     --amber-brighter: #ffc83b;
                     --screen-color: var(--amber-clasic);
+                    --link-base-fs: 2rem;
+                    --link-bigger-fs: 2.5rem;
             }
 
             * {padding: 0.5rem; }
@@ -23,8 +25,11 @@
                 display: none;
             }
 
+            a.nodecoration { text-decoration: none; }
+            a.nodecoration:hover { text-decoration: underline; }
+
             li {font-size: 2rem; }
-            .item {font-size: 2rem; }
+            .item {font-size: 2rem; font-weight: 800;}
             #main-title {margin-left: 4rem; font-size: 3rem; }
 
           ul.color-list {
@@ -59,7 +64,6 @@
                 border-radius: 0.5em;
             }
 
-            /*.black {color: black; text-shadow: 2px 2px white; }*/
             .black {color: black; text-shadow: 2px 2px white; }
             .white {color: white; }
             .red {color: red; }
@@ -85,12 +89,36 @@
                          f/F11 to toggle full screen)</p>
 
         <ul class="color-list">
-            <li><a class="black" href="pages/black.html">Black</a></li>
-            <li><a class="white" href="pages/white.html">White</a></li>
-            <li><a class="red" href="pages/red.html">Red</a></li>
-            <li><a class="green" href="pages/green.html">Green</a></li>
-            <li><a class="blue" href="pages/blue.html">Blue</a></li>
-            <li><a class="item grid-text" href="pages/grid_black.html">Grid</a></li>
+            <li>
+                <a class="item black nodecoration" href="pages/black.html">
+                    Black
+                </a>
+            </li>
+            <li>
+                <a class="item white nodecoration" href="pages/white.html">
+                    White
+                </a>
+            </li>
+            <li>
+                <a class="item red nodecoration" href="pages/red.html">
+                    Red
+                </a>
+            </li>
+            <li>
+                <a class="item green nodecoration" href="pages/green.html">
+                    Green
+                </a>
+            </li>
+            <li>
+                <a class="item blue nodecoration" href="pages/blue.html">
+                    Blue
+                </a>
+            </li>
+            <li>
+                <a class="item grid-text nodecoration" href="pages/grid_black.html">
+                    Grid
+                </a>
+            </li>
         </ul>
 
 
