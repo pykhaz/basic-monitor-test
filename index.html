@@ -7,17 +7,45 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="icon" href="favicon.ico">
         <style>
+            :root { --green-screen: #00aa22;
+                    --amber-clasic: #ffb000;
+                    --amber-deeper: #ff9e00;
+                    --amber-brighter: #ffc83b;
+                    --screen-color: var(--amber-clasic);
+            }
+
             * {padding: 0.5rem; }
             body {background-color: #000000; color: white; height: 100vh;
                   font-family: Sans; }
+
             scrollbar {display: none;}
             ::-webkit-scrollbar {
                 display: none;
             }
+
             li {font-size: 2rem; }
-            .item {font-size: 2rem; margin-left: 8rem; }
+            .item {font-size: 2rem; }
             #main-title {margin-left: 4rem; font-size: 3rem; }
-            #color-list {margin-left: 8rem; }
+
+          ul.color-list {
+            list-style: none; /* Wyłączamy domyślne kropki */
+            margin-left: 8rem;
+            padding-left: 1.2rem;
+          }
+
+          ul.color-list li::before {
+            content: "🖵\FE0E"; /* \FE0E przełącza emoji w tryb monochrome/text */
+            color: var(--screen-color);
+            text-shadow:
+              0 0 4px var(--screen-color),
+              0 0 12px var(--screen-color),
+              0 0 20px var(--screen-color); /* Skalowanie promienia tworzy głęboką poświatę */
+            margin-right: 0.6rem;
+            display: inline-block;
+            font-weight: 800;
+            font-size: 2rem;
+            alignment-baseline: middle;
+          }
 
             .mono-small {
                 font-family: monospace; font-size: 0.6rem;
@@ -56,15 +84,15 @@
                         'i' to toggle info box,
                          f/F11 to toggle full screen)</p>
 
-        <ul id="color-list">
+        <ul class="color-list">
             <li><a class="black" href="pages/black.html">Black</a></li>
             <li><a class="white" href="pages/white.html">White</a></li>
             <li><a class="red" href="pages/red.html">Red</a></li>
             <li><a class="green" href="pages/green.html">Green</a></li>
             <li><a class="blue" href="pages/blue.html">Blue</a></li>
+            <li><a class="item grid-text" href="pages/grid_black.html">Grid</a></li>
         </ul>
 
-        <a class="item grid-text" href="pages/grid_black.html">Grid</a>
 
     </body>
 </html>
