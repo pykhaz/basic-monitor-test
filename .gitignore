@@ -10,6 +10,7 @@
 arch/
 archv/
 *.zip
+tmp_*
 
 # shell scripts
 *.sh
