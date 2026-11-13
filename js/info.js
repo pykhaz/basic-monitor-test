@@ -7,7 +7,6 @@
 
 const infoEl = document.getElementById('hex-val');
 const lValEl = document.getElementById('l-val');
-const queue = new Queue();
 
 // Helper function for limiting values 0 - 255
 // const clamp = val => Math.min(255, Math.max(0, val));
